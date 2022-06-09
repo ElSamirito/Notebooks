@@ -3,6 +3,15 @@ import { useState, useCallback, FormEvent } from 'react'
 import {enableMapSet} from 'immer'
 import { useImmer } from 'use-immer'
 import './index.css'
+import './cssreset.css'
+
+// **MMNNN
+// *: vacio
+// M: Modelo
+// N: Número
+// 0001038 : LENOVO N° 38
+// 0002011 : CONECTAR N° 11
+// 0003005 : CA N° 5
 
 enableMapSet()
 
@@ -20,7 +29,11 @@ var armario:Record<string, string>={
 
 function App() {
     const [codigo, setCodigo] = useState("")
-    const [codigos, setCodigos] = useImmer(new Set<string>())
+    const [codigos, setCodigos] = useImmer(new Set<string>([
+        "LENOVO-IP-35",
+        "LENOVO-IP-36",
+        "LENOVO-IP-37",
+    ]))
 
     const submit = useCallback((e: FormEvent) => {
         e.preventDefault()
@@ -34,14 +47,14 @@ function App() {
     }, [codigo])
 
     return (
-        <div>
+        <>
             <form onSubmit={submit}>
-            <input value={codigo} onChange={e => setCodigo(e.target.value)} />
+            <input className="barcode-input" value={codigo} onChange={e => setCodigo(e.target.value)} />
             </form>
-            <ul>
+            <ul className="notebook-list">
                 {[...codigos].map(c => <li>{armario[c]}</li>)}
             </ul>
-        </div>
+        </>
     )
 }
 
