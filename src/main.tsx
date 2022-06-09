@@ -5,18 +5,15 @@ import { useImmer } from 'use-immer'
 import './index.css'
 import './cssreset.css'
 
-// **MMNNN
+// MMNNN**
 // *: vacio
 // M: Modelo
 // N: Número
-// 0001038 : LENOVO N° 38
-// 0002011 : CONECTAR N° 11
-// 0003005 : CA N° 5
+// 0103800 : LENOVO N° 38
+// 0201100 : CONECTAR N° 11
+// 0300500 : CA N° 5
 
 enableMapSet()
-
-// https://prod.liveshare.vsengsaas.visualstudio.com/join?6072DF2FF72DA001F5A6301CD1515DE75CC1
-
 
 var armario:Record<string, string>={
     "7798162833996" : "Lenovo 01",
@@ -29,11 +26,7 @@ var armario:Record<string, string>={
 
 function App() {
     const [codigo, setCodigo] = useState("")
-    const [codigos, setCodigos] = useImmer(new Set<string>([
-        "LENOVO-IP-35",
-        "LENOVO-IP-36",
-        "LENOVO-IP-37",
-    ]))
+    const [codigos, setCodigos] = useImmer(new Set<string>())
 
     const submit = useCallback((e: FormEvent) => {
         e.preventDefault()
@@ -42,7 +35,10 @@ function App() {
         // const last = codigo.slice(-2)
 
         setCodigos(c => {
-            c.add(`${codigo}`)
+            if(c.has(codigo))
+                c.delete(codigo)
+            else
+                c.add(codigo)
         })
     }, [codigo])
 
