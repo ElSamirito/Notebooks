@@ -3,18 +3,18 @@ import { useImmer } from "use-immer"
 import Compus from 'data/Compus.json'
 import Profes from 'data/Profes.json'
 import saludos from 'data/saludos.json'
+import { useLocation, useParams } from "react-router-dom"
 
 export function Registro() {
     const [codigo, setCodigo] = useState("")
     const [saludo,] = useState(() => saludos[Math.floor(Math.random() * saludos.length)])
     const [codigos, setCodigos] = useImmer(new Set<string>());
-    
+    const a = useParams()
+
     const submit = useCallback((e: FormEvent) => {
         e.preventDefault()
         setCodigo("")
         
-        // const last = codigo.slice(-2)
-
         setCodigos(c => {
             if(c.has(codigo))
                 c.delete(codigo)
@@ -25,7 +25,7 @@ export function Registro() {
 
     return (
         <>
-            <p className="saludo">{saludo.replace('{}', 'Jose Drueta')}</p>
+            <p className="saludo">{saludo.replace('{}', Profes[a.profe as keyof typeof Profes])}</p>
             <form onSubmit={submit}>
                 <input placeholder="Código" className="barcode-input" autoFocus value={codigo} onChange={e => setCodigo(e.target.value)} />
             </form>

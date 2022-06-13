@@ -5,25 +5,24 @@ html, body {
 }
 
 #root {
+    justify-content: center;
     display: flex;
     flex-direction: column;
     height: 100%;
     align-items: center;
     padding: 1rem;
     gap: 1rem;
-}
-
-.barcode-input {
-    border: .25rem solid #eee;
-    padding: .5rem 1rem;
-    border-radius: 2rem;
-    text-align: center;
-    font-size: 2rem;
-    box-sizing: border-box;
+    font-size: 2.5rem;
 }
 
 .saludo {
     font-size: 2rem;
+}
+
+.barcode-input{
+    text-align: center;
+    border: solid 1px grey;
+    border-radius: 1rem;
 }
 
 .notebook-list {

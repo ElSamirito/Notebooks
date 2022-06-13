@@ -12,7 +12,7 @@ export function App() {
                         <Route index /* lista profes *//>
                         <Route path=":profe" /* compus usando el profe *//>
                     </Route>
-                    <Route path="registro" element={<Registro/>}/>
+                    <Route path="registro/:profe" element={<Registro/>}/>
                     <Route path="compus" /* compus sin devolver *//>
                 </Route>
             </Routes>
